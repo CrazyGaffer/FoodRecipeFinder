@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct HomePageView: View {
     @State private var searchText = ""
     private var cuisines: [Category] = [
         Category(name: "Burger", imageName: "burger"),
@@ -18,12 +18,12 @@ struct ContentView: View {
         Category(name: "Sandwich", imageName: "macaroon")
     ]
     private var cards: [RecipePreviewModel] = [
-        RecipePreviewModel(name: "Pork + Kale Quinoa Salad", imageName: "salad", description: "This Asian Pork Salad recipe is made with glazed slices of pork tenderloin atop a colorful salad loaded with crunchy vegetables and quinoa. It’s a super flavorful dish to enjoy for lunch or dinner."),
-        RecipePreviewModel(name: "Homemade Pepperoni Pizza", imageName: "pizza_img", description: "This pepperoni pizza recipe produces a quick and easy classic! Delicious homemade pizza crust and tomato sauce have never been easier."),
-        RecipePreviewModel(name: "Sushi", imageName: "sushi", description: ""),
-        RecipePreviewModel(name: "Salad", imageName: "tortilla", description: ""),
-        RecipePreviewModel(name: "Pelmeni", imageName: "pelmen", description: ""),
-        RecipePreviewModel(name: "Sandwich", imageName: "macaroon", description: "")
+        RecipePreviewModel(name: "Pork + Kale Quinoa Salad", imageName: "salad", description: "This Asian Pork Salad recipe is made with glazed slices of pork tenderloin atop a colorful salad loaded with crunchy vegetables and quinoa. It’s a super flavorful dish to enjoy for lunch or dinner.", time: "15"),
+        RecipePreviewModel(name: "Homemade Pepperoni Pizza", imageName: "pizza_img", description: "This pepperoni pizza recipe produces a quick and easy classic! Delicious homemade pizza crust and tomato sauce have never been easier.", time: "25"),
+        RecipePreviewModel(name: "Sushi", imageName: "sushi", description: "", time: "20"),
+        RecipePreviewModel(name: "Salad", imageName: "tortilla", description: "", time: "15"),
+        RecipePreviewModel(name: "Pelmeni", imageName: "pelmen", description: "", time: "40"),
+        RecipePreviewModel(name: "Sandwich", imageName: "macaroon", description: "", time: "5")
     ]
     var body: some View {
         NavigationStack {
@@ -41,25 +41,27 @@ struct ContentView: View {
                         Spacer()
                         NavigationLink(destination: EmptyView()) {
                             Text("See All")
-                                .fontWeight(.regular)
+                                .fontWeight(.semibold)
                         }
                     }
                     .safeAreaPadding(.horizontal)
-
+                    
                     .padding(.top, 40)
                     
                     ScrollView(.horizontal, showsIndicators: false) {
                         RecipePreviewView(cards: cards)
                     }
                     .safeAreaPadding()
-
+                    
+                    
                 }
             }
-            .searchable(text: $searchText, placement: .automatic, prompt: "Search")
+            .navigationTitle("Apps")
+            .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search")
         }
     }
 }
 
 #Preview {
-    ContentView()
+    BottomNavigationView()
 }

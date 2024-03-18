@@ -35,7 +35,7 @@ struct RecipePreviewView: View {
                         HStack {
                             Image(systemName: "clock")
                                 .foregroundColor(.secondary)
-                            Text("15 min")
+                            Text("\(card.time) min")
                                 .foregroundColor(.secondary)
                             Rectangle()
                                 .frame(width: 1, height: 15)
@@ -46,6 +46,7 @@ struct RecipePreviewView: View {
                             Text("Serves 1")
                                 .foregroundColor(.secondary)
                         }
+                        .fontWeight(.semibold)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding()
@@ -64,6 +65,7 @@ struct RecipePreviewView: View {
                             .fontWeight(.bold)
                             .padding(10)
                     }
+                    .sensoryFeedback(.success, trigger: addeToFav)
                 })
                 .background(.ultraThinMaterial)
                 .cornerRadius(12)
@@ -74,7 +76,7 @@ struct RecipePreviewView: View {
 }
 
 #Preview {
-    ContentView()
+    HomePageView()
 }
 
 
@@ -83,4 +85,5 @@ struct RecipePreviewModel: Identifiable {
     var name: String
     var imageName: String
     var description: String
+    var time: String
 }

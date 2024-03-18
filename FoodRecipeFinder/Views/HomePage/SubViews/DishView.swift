@@ -38,5 +38,5 @@ struct DishView: View {
 }
 
 #Preview {
-    ContentView()
+    HomePageView()
 }
